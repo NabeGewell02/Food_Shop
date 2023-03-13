@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Shop</string>
+    <string name="dobavit_v_korzinu">Dobavit v korzinu</string>
+    <string name="plus">+</string>
+    <string name="zero">0</string>
+    <string name="dollars">0 $</string>
+    <string name="minus">-</string>
+    <string name="kolichestvo">Kolichestvo</string>
+    <string name="stoimost_zakaza">Stoimost zakaza</string>
+    <string name="your_username">Your username</string>
+    <string name="_1">1</string>
+    <string name="vibrat_predmet">Vibrat predmet</string>
+    <string name="_2">2</string>
+</resources>
