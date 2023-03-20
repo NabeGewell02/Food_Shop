@@ -3,9 +3,11 @@ package com.example.shop;
 import androidx.appcompat.app.AppCompatActivity;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -24,12 +26,14 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     double cena;
     double stoimost;
     ImageView kartinka;
+    EditText usernameEditText;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         CreateSpinner();
         kartinka = findViewById(R.id.imageView4);
+        usernameEditText = findViewById(R.id.editTextTextPersonName);
         stoimost = 0;
         CreateMap();
     }
@@ -126,5 +130,19 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         kol_vo = 0;
         TextView kol_vo1 = findViewById(R.id.textView6);
         kol_vo1.setText("" + kol_vo);
+    }
+
+    public void AddToCart(View view)
+    {
+        Order order = new Order();
+        stoimost += cena * kol_vo;
+        order.username = usernameEditText.getText().toString();
+        Log.d("user1",order.username);
+        order.goodsName = goodsName;
+        Log.d("user1",order.goodsName);
+        order.quantity = kol_vo;
+        Log.d("user1","" + order.quantity);
+        order.orderPrice = stoimost;
+        Log.d("user1","" + order.orderPrice);
     }
 }

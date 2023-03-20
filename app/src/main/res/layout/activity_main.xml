@@ -127,12 +127,12 @@
 
     <Button
         android:id="@+id/button3"
-        android:onClick="Dobavit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="0"
+        android:onClick="AddToCart"
         android:text="Добавить в корзину"
-        android:translationY="5dp"/>
+        android:translationY="5dp" />
 
     <TextView
         android:id="@+id/Obshaya_stoimost"
