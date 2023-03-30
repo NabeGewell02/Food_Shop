@@ -1,6 +1,8 @@
 package com.example.shop;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
@@ -32,6 +34,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         CreateSpinner();
+
         kartinka = findViewById(R.id.imageView4);
         usernameEditText = findViewById(R.id.editTextTextPersonName);
         stoimost = 0;
@@ -119,8 +122,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     public void onNothingSelected(AdapterView<?> parent) {
 
     }
-
-    public void Dobavit(View view) {
+    /*public void Dobavit(View view) {
         TextView zakaz_stoimost = findViewById(R.id.Obshaya_stoimost);
         stoimost += cena * kol_vo;
         zakaz_stoimost.setText("Общая стоимость заказа: " + stoimost + " рублей");
@@ -130,19 +132,32 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         kol_vo = 0;
         TextView kol_vo1 = findViewById(R.id.textView6);
         kol_vo1.setText("" + kol_vo);
-    }
+    }*/
+
 
     public void AddToCart(View view)
     {
         Order order = new Order();
         stoimost += cena * kol_vo;
         order.username = usernameEditText.getText().toString();
-        Log.d("user1",order.username);
+
         order.goodsName = goodsName;
-        Log.d("user1",order.goodsName);
+
         order.quantity = kol_vo;
-        Log.d("user1","" + order.quantity);
+
+        order.price = cena;
+
         order.orderPrice = stoimost;
-        Log.d("user1","" + order.orderPrice);
+
+        Intent orderIntent = new Intent(MainActivity.this, OrderActivity.class);
+        orderIntent.putExtra("usernameForIntent", order.username);
+        orderIntent.putExtra("goodsNameForIntent", order.goodsName);
+        orderIntent.putExtra("quantityForIntent", order.quantity);
+        orderIntent.putExtra("priceForIntent", order.price);
+        orderIntent.putExtra("orderPriceForIntent", order.orderPrice);
+
+        startActivity(orderIntent);
     }
 }
+
+
