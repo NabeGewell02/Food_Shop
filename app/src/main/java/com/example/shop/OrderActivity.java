@@ -3,11 +3,16 @@
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
  public class OrderActivity extends AppCompatActivity {
 
+     String[] addresses = {"talyshevmihail06@gmail.com"};
+     String subject = "Order from food shop";
+     String emailText;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,11 +26,25 @@ import android.widget.TextView;
         double orderPrice = receivedOrderIntent.getDoubleExtra("orderPriceForIntent", 0);
 
         TextView orderTextView = findViewById(R.id.orderTextView);
-
-        orderTextView.setText("Имя пользователя: " + userName + "\n"
+        emailText = "Имя пользователя: " + userName + "\n"
                 + "Наименование товара: " + goodsName + "\n"
                 + "Количество товаров: "  + quantity + "\n"
                 + "Цена за единицу товара: " + Price + "\n"
-                + "Цена заказа: "  + orderPrice);
+                + "Цена заказа: "  + orderPrice;
+        orderTextView.setText(emailText);
+
     }
-}
+
+     public void otpravit_zakaz(View view)
+     {
+         Intent intent = new Intent(Intent.ACTION_SENDTO);
+         intent.setData(Uri.parse("mailto:"));
+         intent.putExtra(Intent.EXTRA_EMAIL, addresses);
+         intent.putExtra(Intent.EXTRA_SUBJECT, subject);
+         intent.putExtra(Intent.EXTRA_TEXT, emailText);
+         if (intent.resolveActivity(getPackageManager()) != null){
+             startActivity(intent);
+         }
+     }
+
+ }
